@@ -26,7 +26,7 @@ registerRoutes(app, routeMovie.routes)
 
 
 const main = () => {
-    let host = 'localhost'
+    let host = '47.98.224.206'
     let port = 7000
     let server = app.listen(port, host, function () {
         console.log(`应用实例，访问地址为 http://${host}:${port}`)
