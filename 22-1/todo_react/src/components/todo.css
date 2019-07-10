@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+body {
+    margin: 20px;
+    color: #333;
+}
+
+nav {
+    margin: 20px 0;
+}
+
+nav a {
+    padding: 0 10px;
+    color: #999;
+}
+
+ul {
+    padding: 20px 0;
+}
+
+.todo-cell {
+    width: 400px;
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px solid #999;
+    border-radius: 5px;
+}
+
+.todo-complete {
+    position: relative;
+    border-color: #61dafb;
+}
+
+.todo-complete::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    color: #61dafb;
+    transform: translateY(-50%);
+}
+
+button {
+    margin: 0 4px;
+    padding: 2px;
+    border: 1px solid #999;
+    outline: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+input {
+    padding: 2px;
+    border: 1px solid #eee;
+    outline: none;
+}
+
+input:focus {
+    border: 1px solid #61dafb;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1a7af8;
+}
+
+.todo-table {
+    display: table;
+    margin: 10px 0 30px;
+}
+
+.todo-row {
+    display: table-row;
+}
+
+.todo-row:not(:first-child) {
+    margin-top: -1px;
+}
+
+.cell {
+    display: table-cell;
+    width: 100px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+.todo-home {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    bottom: 15px;
+    text-align: center;
+    top: 50%;
+
+}
