@@ -1,0 +1,17 @@
+{
+    "scripts": {
+        "start": "node app.js",
+        "do": "node douban.js"
+    },
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "express": "^4.17.1",
+        "cheerio": "^1.0.0-rc.2",
+        "request": "^2.88.0",
+        "syncrequest": "^1.4.3"
+    },
+    "name": "visual",
+    "version": "1.0.0",
+    "main": "app.js",
+    "license": "MIT"
+}
