@@ -1,0 +1,77 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>博客首页</title>
+        <link rel="stylesheet" href="/css/blog.css">
+    </head>
+    <body>
+    <!-- 轮播图 -->
+        <div class="gua-3">
+            <!-- data-imgs 是图片的总数 -->
+            <!-- data-active 是当前显示的图片的下标 -->
+            <div class="gua-slide" data-imgs="3" data-active="0">
+                <img id="id-guaimage-0" class="gua-slide-image gua-active" src="images/1.jpg" alt="">
+                <img id="id-guaimage-1" class="gua-slide-image" src="images/2.jpg" alt="">
+                <img id="id-guaimage-2" class="gua-slide-image" src="images/3.jpg" alt="">
+                <!-- &lt; 和 &gt; 是 HTML 转义符号, 也叫 HTML 实体-->
+                <button class="gua-slide-button gua-left gua-vertical-center" data-offset="-1">&lt;</button>
+                <button class="gua-slide-button gua-right gua-vertical-center" data-offset="1">&gt;</button>
+                <div class="gua-slide-indicators">
+                    <div id="id-indicator-0" data-index="0" class="gua-slide-indi gua-white"></div>
+                    <div id="id-indicator-1" data-index="1" class="gua-slide-indi"></div>
+                    <div id="id-indicator-2" data-index="2" class="gua-slide-indi"></div>
+                </div>
+            </div>
+        </div>
+
+<!--        <img src="images/doge.gif" alt="">-->
+        <div class="blog-new">
+            <label for="">
+                博文标题
+                <input id="id-input-title" type="text" value="">
+            </label>
+            <br>
+            <label for="">
+                博文作者
+                <input id="id-input-author" type="text" value="">
+            </label>
+            <br>
+            <div>博文内容</div>
+            <label for="" class="blog-text-area">
+                <textarea id="id-input-content" type="text" value="" ></textarea>
+            </label>
+            <br>
+            <label for="">
+                主人密码
+                <input id="id-input-mima" type="text" value="" placeholder="密码留空">
+            </label>
+            <br>
+            <button id="id-button-submit">发表新博文</button>
+        </div>
+    <img src="images/doge1.png" class="doge-jpg">
+    <div class="audio-box">
+
+        <audio src = "music/1.mp3" controls ></audio>
+        <div>
+            <button class="music" data-id="#play">播放</button>
+            <button class="music" data-id="#pause">暂停</button>
+        </div>
+        <span class="time-now">当前时间</span>
+        <span class="time-hole">总时间</span>
+        <div class="text-box">
+            <div class="txt" data-id="#1.mp3">1.mp3</div>
+            <div class="txt" data-id="#2.mp3">2.mp3</div>
+            <div class="txt" data-id="#3.mp3">3.mp3</div>
+        </div>
+
+    </div>
+
+        <div class="gua-blogs"></div>
+        <script src="js/gua.js"></script>
+        <script src="js/3.js"></script>
+        <script src="js/audioPlayer.js"></script>
+        <script src="js/blog_main.js"></script>
+
+    </body>
+</html>

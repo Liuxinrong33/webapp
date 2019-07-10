@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>博客详情</title>
+        <style>
+            .comment-box {
+                display: block;
+                position: static;
+                width: 300px;
+                margin: 0 auto;
+                text-align: center;
+
+            }
+            body {
+                overflow: auto;
+                background: lightblue;
+            }
+            .blog-comments {
+                display: block;
+                float: right;
+            }
+        </style>
+    </head>
+    <body data-id="{{id}}">
+
+        <div>
+            <h1>博客详情</h1>
+            <div class="blog-contains"></div>
+        </div>
+        <script>
+            const log = console.log.bind(console)
+            const templateHtml = function(r) {
+                let title = r.title
+                let author = r.author
+                let content = r.content
+
+                let time = r.created_time
+                let d = new Date(time * 1000)
+                let timereal = d.toLocaleString()
+                log('time', timereal)
+                let t = `
+                <div class="blog-contains">
+                    <h1>博客标题: ${title}</h1>
+                    <h2>博客作者: ${author}</h2>
+                    <h3>写作时间: ${timereal}</h3>
+                    <h3>博客内容: ${content}</h3>
+                    <div class="blog-comments">评论: </div>
+                </div>
+                `
+
+                return t
+            }
+            const appendComents = (r) => {
+                let comments = r.comments
+                let commentsBox = document.querySelector('.blog-comments')
+                for (let i of comments) {
+                    let time = i.created_time
+                    let d = new Date(time * 1000)
+                    let timereal1 = d.toLocaleString()
+                    commentsBox.innerHTML += `
+                    <div class="comment-box">
+                        <div>评论者：${i.author}</div>
+                        <div>评论时间：${timereal1}</div>
+                        <div>评论楼层：${i.id}</div>
+                        <div>评论内容：${i.content}</div>
+                    </div>
+                    `
+                }
+            }
+            const ajax = function(request) {
+                /*
+                request 是一个 object，有如下属性
+                    method，请求的方法，string
+                    url，请求的路径，string
+                    data，请求发送的数据，如果是 GET 方法则没有这个值，string
+                    callback，响应回调，function
+                */
+                let r = new XMLHttpRequest()
+                r.open(request.method, request.url, true)
+                if (request.contentType !== undefined) {
+                    r.setRequestHeader('Content-Type', request.contentType)
+                }
+                r.onreadystatechange = function() {
+                    if (r.readyState === 4) {
+                        request.callback(r.response)
+                    }
+                }
+                if (request.method === 'GET') {
+                    r.send()
+                } else {
+                    r.send(request.data)
+                }
+            }
+            const addHtml = (response) => {
+                let contains = document.querySelector('.blog-contains')
+                contains.innerHTML = templateHtml(response)
+            }
+            let blogOne = function(id, callback) {
+                let request = {
+                    method: 'GET',
+                    url: '/api/blog/' + id,
+                    contentType: 'application/json',
+                    callback: function(response) {
+                        let b = JSON.parse(response)
+                        callback(b)
+                    }
+                }
+                ajax(request)
+            }
+
+            const __main = () => {
+                // body 和 head 是两个很特殊的元素, 可以直接用 document.body 和 document.head 获取
+                let id = document.body.dataset.id
+                // log('id is', id, typeof id)
+                blogOne(id, (r) => {
+                    log('blog one r is', r)
+                    addHtml(r)
+                    appendComents(r)
+                })
+            }
+
+            __main()
+        </script>
+    </body>
+</html>
